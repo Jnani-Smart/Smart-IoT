@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import path from 'path';
 
 export default defineConfig({
   plugins: [
@@ -27,7 +28,21 @@ export default defineConfig({
       }
     })
   ],
+  resolve: {
+    alias: {
+      dgram: path.resolve(__dirname, './src/utils/empty-module.js'),
+      net: path.resolve(__dirname, './src/utils/empty-module.js'),
+      tls: path.resolve(__dirname, './src/utils/empty-module.js'),
+      fs: path.resolve(__dirname, './src/utils/empty-module.js'),
+      os: path.resolve(__dirname, './src/utils/empty-module.js'),
+    },
+  },
   optimizeDeps: {
+    esbuildOptions: {
+      define: {
+        global: 'globalThis',
+      },
+    },
     exclude: ['lucide-react'],
   },
 });
