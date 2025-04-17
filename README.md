@@ -4,6 +4,10 @@ A comprehensive IoT solution for smart home automation and device management.
 
 ## Features
 - Real-time device monitoring
+- Unified, modern UI for cloud and local devices
+- Responsive, auto-adjusting device cards
+- Consistent dark/light background and theme support
+- Simple, dismissible in-app notifications
 - Cross-platform compatibility
 - Secure authentication
 - Customizable dashboards
@@ -14,6 +18,13 @@ A comprehensive IoT solution for smart home automation and device management.
 - Firebase (Backend)
 - Tailwind CSS (Styling)
 - TypeScript
+
+## Recent Updates
+- Redesigned all device cards for a cohesive, modern look
+- Unified the UI for cloud and local network devices
+- Improved background fill for the entire app (no white bars)
+- Simplified notification system for better UX
+- Fixed various UI alignment and spacing issues
 
 ## Getting Started
 
