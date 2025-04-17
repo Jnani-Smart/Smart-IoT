@@ -330,11 +330,12 @@ const LocalDevicesTab = () => {
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
           {devices.map((device) => (
             <div 
               key={device.id} 
-              className="relative overflow-hidden rounded-xl transition-all duration-300"
+              className="relative overflow-hidden rounded-xl transition-all duration-300 min-h-[240px] min-w-[260px] max-w-full w-full flex flex-col h-auto bg-transparent"
+              style={{ boxSizing: 'border-box' }}
             >
               {/* Card background with gradient */}
               <div className={`absolute inset-0 ${device.state 
@@ -347,7 +348,7 @@ const LocalDevicesTab = () => {
               </div>
               
               {/* Card content */}
-              <div className="relative p-6 border border-gray-200 dark:border-gray-700/50 rounded-xl flex flex-col h-full">
+              <div className="relative p-6 border border-gray-200 dark:border-gray-700/50 rounded-xl flex flex-col flex-1 h-auto min-h-[180px]">
                 {/* Protocol badge */}
                 <div className="inline-flex items-center self-start mb-4">
                   {getProtocolBadge(device.protocol)}
@@ -366,7 +367,7 @@ const LocalDevicesTab = () => {
                 </div>
                 
                 {/* Controls container - will auto-adjust height */}
-                <div className={`flex-grow ${!device.state ? 'opacity-50' : ''}`}>
+                <div className={`flex-grow ${!device.state ? 'opacity-50' : ''} flex flex-col justify-start min-h-[40px]`}>
                   {/* Device Specific Controls */}
                   {device.type === 'light' && (
                     <div className="mb-6">

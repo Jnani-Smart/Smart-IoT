@@ -561,12 +561,13 @@ const Dashboard = () => {
                     </button>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-min">
                     {/* Redesigned cloud devices cards */}
                     {filteredDevices.map((device) => (
                       <div
                         key={device.id}
-                        className={`relative overflow-hidden rounded-xl transition-all duration-300 ${isUpdating[device.id] || isDeleting[device.id] ? 'opacity-70 pointer-events-none' : ''}`}
+                        className={`relative overflow-hidden rounded-xl transition-all duration-300 min-h-[240px] min-w-[260px] max-w-full w-full flex flex-col h-auto bg-transparent` + (isUpdating[device.id] || isDeleting[device.id] ? ' opacity-70 pointer-events-none' : '')}
+                        style={{ boxSizing: 'border-box' }}
                       >
                         {/* Card background with gradient */}
                         <div className={`absolute inset-0 ${device.state 
@@ -579,7 +580,7 @@ const Dashboard = () => {
                         </div>
                         
                         {/* Card content */}
-                        <div className="relative p-6 border border-gray-200 dark:border-gray-700/50 rounded-xl flex flex-col h-full">
+                        <div className="relative p-6 border border-gray-200 dark:border-gray-700/50 rounded-xl flex flex-col flex-1 h-auto min-h-[180px]">
                           {/* Room label */}
                           <div className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 mb-4 self-start">
                             {device.room}
@@ -598,7 +599,7 @@ const Dashboard = () => {
                           </div>
                           
                           {/* Controls container - will auto-adjust height */}
-                          <div className={`flex-grow ${!device.state ? 'opacity-50' : ''}`}>
+                          <div className={`flex-grow ${!device.state ? 'opacity-50' : ''} flex flex-col justify-start min-h-[40px]`}>
                             {/* Device Specific Controls */}
                             {(device.type === 'ac' || device.type === 'refrigerator') && (
                               <div className="mb-6">
@@ -624,7 +625,6 @@ const Dashboard = () => {
                                 </div>
                               </div>
                             )}
-                            
                             {device.type === 'light' && (
                               <div className="mb-6">
                                 <div className="flex items-center justify-between mb-2">
@@ -649,7 +649,6 @@ const Dashboard = () => {
                                 </div>
                               </div>
                             )}
-                            
                             {device.type === 'fan' && (
                               <div className="mb-6">
                                 <div className="flex items-center justify-between mb-2">
@@ -676,7 +675,6 @@ const Dashboard = () => {
                                 </div>
                               </div>
                             )}
-                            
                             {device.type === 'tv' && (
                               <div className="space-y-4 mb-6">
                                 {/* Channel Control */}
@@ -702,7 +700,6 @@ const Dashboard = () => {
                                     <span>100</span>
                                   </div>
                                 </div>
-                                
                                 {/* Volume Control */}
                                 <div>
                                   <div className="flex items-center justify-between mb-2">
@@ -729,7 +726,6 @@ const Dashboard = () => {
                               </div>
                             )}
                           </div>
-                          
                           {/* Action buttons - always at the bottom */}
                           <div className="flex items-center justify-between pt-4 mt-auto border-t border-gray-200 dark:border-gray-700/50">
                             <button
@@ -742,7 +738,6 @@ const Dashboard = () => {
                             >
                               <Trash2 className="h-4 w-4" />
                             </button>
-                            
                             <div className="flex items-center">
                               <span className="mr-2 text-xs text-gray-500 dark:text-gray-400">
                                 {device.state ? 'On' : 'Off'}
